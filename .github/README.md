@@ -4,7 +4,7 @@ My personal dotfiles which I have code named TempestOS.
 
 ## Using
 ```shell
-git clone https://github.com/jagger-harris/opengl-c-example.git ~/
+git clone https://github.com/jagger-harris/dotfiles.git ~/
 ```
 
 ## Contributing
