@@ -15,7 +15,6 @@ local function systray_widget()
 
   -- Redraw wibox, fixes empty box if there are no entries
   systray_container.visible = starting_entries > 0
-  --systray_container:emit_signal("widget::redraw_needed")
 
   -- Connect signal to handle layout changes
   systray:connect_signal("widget::layout_changed", function()
