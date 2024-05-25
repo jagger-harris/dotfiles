@@ -11,9 +11,7 @@ local function volume_popup_widget(args)
   local screen = args.screen
   local get_volume_command = args.command
 
-  local volume_slider_widget = wibox.widget {
-    value = 100,
-    widget = wibox.widget.slider,
+  local volume_slider_widget = wibox.widget.slider {
     handle_shape = rounded_rect,
     handle_color = beautiful.foreground_color_light,
     bar_shape = gears.shape.rounded_rect,
@@ -22,6 +20,7 @@ local function volume_popup_widget(args)
     bar_active_color = beautiful.foreground_color,
   }
 
+  -- Set slider value
   awful.spawn.easy_async(get_volume_command, function(stdout)
     volume_slider_widget.value = tonumber(stdout)
   end)
@@ -31,21 +30,19 @@ local function volume_popup_widget(args)
   end)
 
   local volume_widget = wibox.widget {
-    widget = wibox.widget {
-      widget = wibox.container.background,
-      forced_height = dpi(28),
-      forced_width = dpi(256),
-      border_width = beautiful.border_width,
-      border_color = beautiful.border_color,
-      bg = beautiful.background_color_dark,
+    widget = wibox.container.background,
+    forced_height = dpi(28),
+    forced_width = dpi(256),
+    border_width = beautiful.border_width,
+    border_color = beautiful.border_color,
+    bg = beautiful.background_color_dark,
+    wibox.widget {
+      widget = wibox.container.margin,
+      margins = beautiful.widget_margin,
       wibox.widget {
-        widget = wibox.container.margin,
-        margins = beautiful.widget_margin,
-        wibox.widget {
-          widget = volume_slider_widget
-        }
-      },
-    }
+        widget = volume_slider_widget
+      }
+    },
   }
 
   local popup = awful.popup {
