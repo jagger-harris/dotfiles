@@ -98,13 +98,13 @@ screen.connect_signal("request::desktop_decoration", function(s)
       bg = beautiful.background_color_dark,
       {
         widget = wibox.container.margin,
-        margins = beautiful.widget_margin,
+        margins = {left = beautiful.widget_margin, top = beautiful.widget_margin, bottom = beautiful.widget_margin},
         {
           expand = "none",
           layout = wibox.layout.align.horizontal,
           { -- Left widgets
-            spacing = beautiful.widget_margin,
             layout = wibox.layout.fixed.horizontal,
+            spacing = beautiful.widget_margin,
             padded_widget({ widgets = { s.mytaglist } }),
             padded_widget({ widgets = { s.mylayoutbox } }),
           },
@@ -113,8 +113,8 @@ screen.connect_signal("request::desktop_decoration", function(s)
             padded_widget({ widgets = { wibox.widget.textclock(" %I:%M %p", 0.5) } }),
           },
           { -- Right widgets
-            spacing = beautiful.widget_margin,
             layout = wibox.layout.fixed.horizontal,
+            spacing = beautiful.widget_margin,
             padded_widget({ widgets = { temperature_widget, cpu_widget, memory_widget } }),
             update_widget,
             volume_widget({ screen = s }),
