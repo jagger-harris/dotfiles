@@ -8,8 +8,6 @@
 #                     |_|
 #
 # Bash config
-# Jagger Harris
-# Last modified on 05/24/2024
 
 ### Return if not an interactive shell
 [[ $- != *i* ]] && return
@@ -74,6 +72,9 @@ alias update="sudo pacman -Syu"
 alias updateaur="paru -Syu"
 alias vim="nvim"
 
+# git
+alias git statu
+
 # cd
 alias ..="cd .."
 alias ...="cd ../../"
@@ -91,5 +92,6 @@ alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 
 # misc
+alias mount="mount | column -t"
 alias df="df -h" # human readable sizes
 alias free="free -m" # shows megabytes
