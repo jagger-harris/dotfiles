@@ -8,8 +8,6 @@
 --                     |_|
 --
 -- NeoVIM config
--- Last updated on 5/23/2024
--- Jagger Harris
 
 --- Configuration options
 require("config.options")
