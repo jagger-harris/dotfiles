@@ -11,7 +11,7 @@ local systray_widget = require("widgets.wibar.systray_widget")
 local cpu_widget = require("widgets.wibar.cpu_widget")
 local memory_widget = require("widgets.wibar.memory_widget")
 local temperature_widget = require("widgets.wibar.temperature_widget")
-local update_widget = require("widgets.wibar.update_widget")
+local updates_widget = require("widgets.wibar.updates_widget")
 local volume_widget = require("widgets.wibar.volume_widget")
 
 screen.connect_signal("request::desktop_decoration", function(s)
@@ -116,7 +116,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
             layout = wibox.layout.fixed.horizontal,
             spacing = beautiful.widget_margin,
             padded_widget({ widgets = { temperature_widget, cpu_widget, memory_widget } }),
-            update_widget,
+            updates_widget,
             volume_widget({ screen = s }),
             systray_widget,
             padded_widget({ widgets = { calendar_widget } }),
