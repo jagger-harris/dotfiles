@@ -9,7 +9,6 @@ local rounded_rect = require("widgets.shapes.rounded_rect")
 local function volume_popup_widget(args)
   local attached_widget = args.attached_widget or nil
   local screen = args.screen
-  local get_volume_command = args.command
 
   local volume_slider_widget = wibox.widget.slider {
     handle_shape = rounded_rect,
@@ -21,8 +20,10 @@ local function volume_popup_widget(args)
   }
 
   -- Set slider value
-  awful.spawn.easy_async(get_volume_command, function(stdout)
-    volume_slider_widget.value = tonumber(stdout)
+  awful.spawn.easy_async([[sh -c "sleep 1; amixer get Master | grep -oE '[0-9]{1,3}%' | head -n1"]], function(stdout)
+    local volume = stdout:gsub("%%", "")
+
+    volume_slider_widget.value = tonumber(volume)
   end)
 
   volume_slider_widget:connect_signal("property::value", function(_, new_value)
