@@ -4,6 +4,7 @@ local temperature_widget = icon_info_widget({
   icon = "",
   suffix = "°C ",
   timeout = 1,
+  round = true,
   command = [[sh -c "sensors | grep 'CPU Temperature' | awk '{print $3}' | tr -d '+°C'"]],
 })
 
