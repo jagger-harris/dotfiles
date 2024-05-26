@@ -72,9 +72,6 @@ alias update="sudo pacman -Syu"
 alias updateaur="paru -Syu"
 alias vim="nvim"
 
-# git
-alias git statu
-
 # cd
 alias ..="cd .."
 alias ...="cd ../../"
