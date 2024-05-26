@@ -8,8 +8,6 @@
 --                     |_|                              
 --                                                      
 -- AwesomeWM config
--- Last updated on 5/23/2024
--- Jagger Harris
 
 -- Luarocks
 pcall(require, "luarocks.loader")
