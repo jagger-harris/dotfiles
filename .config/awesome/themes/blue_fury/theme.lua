@@ -1,13 +1,30 @@
+--   _____                              _   _____ _____ 
+--  |_   _|                            | | |  _  /  ___|
+--    | | ___ _ __ ___  _ __   ___  ___| |_| | | \ `--. 
+--    | |/ _ \ '_ ` _ \| '_ \ / _ \/ __| __| | | |`--. \
+--    | |  __/ | | | | | |_) |  __/\__ \ |_\ \_/ /\__/ /
+--    \_/\___|_| |_| |_| .__/ \___||___/\__|\___/\____/ 
+--                     | |                              
+--                     |_|                              
+--                                                      
+-- Blue Fury Theme
+-- Wallpapers licensed under CC BY-SA 4.0
+-- (https://creativecommons.org/licenses/by-sa/4.0/)
+
 local dpi = require("beautiful.xresources").apply_dpi
-local themes_path = os.getenv("HOME") .. "/.config/awesome/theme/"
+local themes_path = os.getenv("HOME") .. "/.config/awesome/themes/blue_fury/"
 local theme = {}
 
+-- Font
 theme.font = "JetBrainsMonoNL Nerd Font 12"
+
+-- Wallpaper
+theme.wallpaper = themes_path .. "wallpapers/blue_fury.png"
 
 -- Theme colors
 theme.foreground_color_white = "#ffffff"
 theme.foreground_color_light = "#d6deeb"
-theme.foreground_color = "#82AAFF"
+theme.foreground_color = "#82aaff"
 theme.foreground_color_dark = "#335e87"
 theme.background_color_light = theme.foreground_color_dark
 theme.background_color = "#0b2942"
@@ -29,9 +46,6 @@ theme.useless_gap = dpi(4)
 theme.border_width = dpi(2)
 theme.border_color_normal = theme.transparent
 theme.border_color_active = theme.foreground_color_light
-
--- Wallpaper
-theme.wallpaper = themes_path .. "background.png"
 
 -- Notifications
 theme.notification_fg = theme.foreground_color_light

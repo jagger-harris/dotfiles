@@ -2,8 +2,10 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
 
+local themes_path = os.getenv("HOME") .. "/.config/awesome/themes"
+
 -- Init theme
-beautiful.init(string.format("%s/.config/awesome/theme/theme.lua", os.getenv("HOME")))
+beautiful.init(string.format("%s/blue_fury/theme.lua", themes_path))
 
 -- Wallpaper
 screen.connect_signal("request::wallpaper", function(s)
