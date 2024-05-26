@@ -1,6 +1,6 @@
 local terminal_app = "alacritty"
 local filemanager_app = "pcmanfm"
-local browser_app = "brave"
+local browser_app = "firefox"
 local run_app = "rofi -show"
 
 return {
