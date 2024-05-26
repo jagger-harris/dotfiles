@@ -57,7 +57,7 @@ export HISTCONTROL=ignoreboth:erasedups
 
 ### Aliases
 
-# Safety
+# safety
 alias rm="rm -i --preserve-root"
 alias mv="mv -i"
 alias cp="cp -i"
@@ -66,10 +66,10 @@ alias chown="chown --preserve-root"
 alias chmod="chmod --preserve-root"
 alias chgrp="chgrp --preserve-root"
 
-# Custom
+# custom
 alias config="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias update="sudo pacman -Syu"
-alias updateaur="paru -Syu"
+alias updateaur="paru -Sua"
 alias vim="nvim"
 
 # cd
@@ -89,6 +89,7 @@ alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 
 # misc
+alias cat="bat"
 alias mount="mount | column -t"
 alias df="df -h" # human readable sizes
 alias free="free -m" # shows megabytes
