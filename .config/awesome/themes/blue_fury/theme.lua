@@ -8,7 +8,7 @@
 --                     |_|                              
 --                                                      
 -- Blue Fury Theme
--- Wallpapers licensed under CC BY-SA 4.0
+-- Images licensed under CC BY-SA 4.0
 -- (https://creativecommons.org/licenses/by-sa/4.0/)
 
 local dpi = require("beautiful.xresources").apply_dpi
@@ -19,7 +19,7 @@ local theme = {}
 theme.font = "JetBrainsMonoNL Nerd Font 12"
 
 -- Wallpaper
-theme.wallpaper = themes_path .. "wallpapers/blue_fury.png"
+theme.wallpaper = themes_path .. "wallpapers/blue_fury.svg"
 
 -- Theme colors
 theme.foreground_color_white = "#ffffff"
