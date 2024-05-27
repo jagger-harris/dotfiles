@@ -1,0 +1,114 @@
+//   _____                              _   _____ _____ 
+//  |_   _|                            | | |  _  /  ___|
+//    | | ___ _ __ ___  _ __   ___  ___| |_| | | \ `--. 
+//    | |/ _ \ '_ ` _ \| '_ \ / _ \/ __| __| | | |`--. \
+//    | |  __/ | | | | | |_) |  __/\__ \ |_\ \_/ /\__/ /
+//    \_/\___|_| |_| |_| .__/ \___||___/\__|\___/\____/ 
+//                     | |                              
+//                     |_|                              
+//                                                      
+// Blue Fury Theme
+// Images licensed under CC BY-SA 4.0
+// (https://creativecommons.org/licenses/by-sa/4.0/)
+
+* {
+  border-radius-all: 4px;
+  padding-default: 8px;
+  spacing-default: 8px;
+  foreground-color: #d6deeb;
+  background-color-highlight: #234d70; 
+  background-color: #0b2942;
+  background-color-dark: #011627;
+}
+
+window {
+  width: 512px;
+  border-radius: @border-radius-all;
+  border: 2px solid;
+  background-color: @background-color-dark;
+  border-color: @foreground-color;
+  background-image: url("blue_fury_small.png", width);
+}
+
+mainbox {
+  background-color: transparent;
+  border-radius: @border-radius-all;
+  children: ["inputbar", "listview", "message"];
+}
+
+inputbar {
+  margin: 64px;
+  padding: @padding-default;
+  spacing: 12px;
+  children: ["prompt", "entry"];
+  border-radius: @border-radius-all;
+  background-color: @background-color;
+  text-color: @foreground-color;
+}
+
+prompt {
+  text-color: @foreground-color;
+}
+
+entry {
+  placeholder: "Search apps";
+  placeholder-color: @background-color-highlight;
+  text-color: @foreground-color;
+}
+
+listview {
+  padding: @padding-default;
+  spacing: @spacing-default;
+  background-color: @background-color;
+  columns: 1;
+  lines: 8;
+  cycle: false;
+  scrollbar: false;
+}
+
+element {
+  padding: @padding-default;
+  spacing: @spacing-default;
+  border-radius: @border-radius-all;
+  background-color: transparent;
+  text-color: @foreground-color;
+}
+
+element-icon {
+  background-color: transparent;
+}
+
+element-text {
+  background-color: transparent;
+  text-color: @foreground-color;
+}
+
+element normal.normal {
+	background-color: @background-color;
+	text-color: @foreground-color;
+}
+
+element alternate.normal {
+	background-color: @background-color;
+	text-color: @foreground-color;
+}
+
+element selected.active {
+	background-color: @background-color-highlight;
+	text-color: @foreground-color;
+}
+
+element selected.normal {
+	background-color: @background-color-highlight;
+	text-color: @foreground-color;
+}
+
+message {
+  background-color: @background-color;
+  border-radius: @border-radius-all;
+  text-color: @foreground-color;
+}
+
+textbox {
+  text-color: @foreground-color;
+}
