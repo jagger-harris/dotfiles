@@ -27,18 +27,20 @@ window {
   border: 2px solid;
   background-color: @background-color-dark;
   border-color: @foreground-color;
-  background-image: url("blue_fury_small.png", width);
+  
 }
 
 mainbox {
+  margin: 8px;
   background-color: transparent;
+  background-image: url("blue_fury_small.png", width);
   border-radius: @border-radius-all;
   children: ["inputbar", "listview", "message"];
 }
 
 inputbar {
   margin: 64px;
-  padding: @padding-default;
+  padding: 12px;
   spacing: 12px;
   children: ["prompt", "entry"];
   border-radius: @border-radius-all;
