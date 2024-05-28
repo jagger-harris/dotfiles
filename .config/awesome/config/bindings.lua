@@ -2,6 +2,7 @@ local awful = require("awful")
 local apps = require("config.apps")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local modkey = "Mod4"
+local naughty = require("naughty")
 
 -- Mouse bindings
 client.connect_signal("request::default_mousebindings", function()
@@ -154,7 +155,9 @@ client.connect_signal("request::default_keybindings", function()
 				local prev_screen = current_screen.index - 1
 
 				if prev_screen < 2 then
+					local current_mouse_screen = mouse.screen
 					client.focus:move_to_screen(screen[1])
+					awful.screen.focus(current_mouse_screen)
 				end
 			end
 		end, { description = "move to next screen", group = "client" }),
@@ -164,7 +167,9 @@ client.connect_signal("request::default_keybindings", function()
 				local next_screen = current_screen.index + 1
 
 				if next_screen <= screen:count() then
+					local current_mouse_screen = mouse.screen
 					client.focus:move_to_screen(screen[next_screen])
+					awful.screen.focus(current_mouse_screen)
 				end
 			end
 		end, { description = "move to previous screen", group = "client" }),
