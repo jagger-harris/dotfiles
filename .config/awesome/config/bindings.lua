@@ -2,7 +2,6 @@ local awful = require("awful")
 local apps = require("config.apps")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local modkey = "Mod4"
-local naughty = require("naughty")
 
 -- Mouse bindings
 client.connect_signal("request::default_mousebindings", function()
