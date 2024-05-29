@@ -51,11 +51,32 @@ local function volume_popup_widget(args)
     screen = screen,
     visible = false,
     ontop = true,
-    hide_on_right_click = true,
   }
+
+  local hide_timer = gears.timer {
+    timeout = 0.5,
+    autostart = false,
+    single_shot = true,
+    callback = function()
+      popup.visible = false
+    end
+  }
+
+  popup:connect_signal("mouse::enter", function()
+    popup.visible = true
+    hide_timer:stop()
+  end)
+
+  popup:connect_signal("mouse::leave", function()
+    hide_timer:start()
+  end)
 
   if attached_widget then
     popup:bind_to_widget(attached_widget)
+
+    attached_widget:connect_signal("mouse::leave", function()
+      hide_timer:start()
+    end)
   end
 
   return popup
