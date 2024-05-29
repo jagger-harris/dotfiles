@@ -11,7 +11,6 @@ local function calendar_popup_widget(args)
     start_sunday = true,
     long_weekdays = true,
     screen = screen,
-    margin = beautiful.useless_gap * 2,
     style_month = {
       border_color = beautiful.border_color_active,
       bg_color = beautiful.background_color_dark,
