@@ -7,7 +7,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 local rounded_rect = require("widgets.shapes.rounded_rect")
 
 local function volume_popup_widget(args)
-  local attached_widget = args.attached_widget or nil
+  local attached_widget = args.attached_widget
   local screen = args.screen
 
   local volume_slider_widget = wibox.widget.slider {
@@ -19,12 +19,13 @@ local function volume_popup_widget(args)
     bar_active_color = beautiful.foreground_color,
   }
 
-  -- Set slider value
-  awful.spawn.easy_async([[sh -c "sleep 1; amixer get Master | grep -oE '[0-9]{1,3}%' | head -n1"]], function(stdout)
-    local volume = stdout:gsub("%%", "")
+  local function set_slider_value()
+    awful.spawn.easy_async([[sh -c "amixer get Master | grep -oE '[0-9]{1,3}%' | head -n1"]], function(stdout)
+      local volume = stdout:gsub("%%", "")
 
-    volume_slider_widget.value = tonumber(volume)
-  end)
+      volume_slider_widget.value = tonumber(volume)
+    end)
+  end
 
   volume_slider_widget:connect_signal("property::value", function(_, new_value)
     awful.spawn.easy_async("amixer sset Master " .. new_value .. "%")
@@ -32,54 +33,61 @@ local function volume_popup_widget(args)
 
   local volume_widget = wibox.widget {
     widget = wibox.container.background,
-    forced_height = dpi(28),
-    forced_width = dpi(256),
     border_width = beautiful.border_width,
     border_color = beautiful.border_color,
     bg = beautiful.background_color_dark,
+    forced_height = dpi(28),
+    forced_width = dpi(256),
     wibox.widget {
       widget = wibox.container.margin,
-      margins = beautiful.widget_margin,
-      wibox.widget {
-        widget = volume_slider_widget
-      }
-    },
+      margins = beautiful.widget_padding,
+      volume_slider_widget,
+    }
   }
 
-  local popup = awful.popup {
+  local popup_widget = awful.popup {
     widget = volume_widget,
     screen = screen,
     visible = false,
     ontop = true,
+    preferred_anchors = "middle",
   }
 
   local hide_timer = gears.timer {
-    timeout = 0.5,
+    timeout = 0.25,
     autostart = false,
     single_shot = true,
     callback = function()
-      popup.visible = false
+      popup_widget.visible = false
     end
   }
 
-  popup:connect_signal("mouse::enter", function()
-    popup.visible = true
+  popup_widget:connect_signal("mouse::enter", function()
+    popup_widget.visible = true
+    set_slider_value()
     hide_timer:stop()
   end)
 
-  popup:connect_signal("mouse::leave", function()
+  popup_widget:connect_signal("mouse::leave", function()
+    hide_timer.timeout = 0.25
     hide_timer:start()
   end)
 
   if attached_widget then
-    popup:bind_to_widget(attached_widget)
+    attached_widget:connect_signal("mouse::enter", function()
+      popup_widget.visible = true
+      popup_widget:move_next_to(mouse.current_widget_geometry)
+      set_slider_value()
+      hide_timer:stop()
+    end)
 
     attached_widget:connect_signal("mouse::leave", function()
+      hide_timer.timeout = 0.5
       hide_timer:start()
     end)
   end
 
-  return popup
+  return popup_widget
 end
 
 return volume_popup_widget
