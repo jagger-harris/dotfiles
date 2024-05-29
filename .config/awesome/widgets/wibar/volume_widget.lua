@@ -5,19 +5,21 @@ local volume_popup_widget = require("widgets.popups.volume_popup_widget")
 
 local function volume_widget(args)
   local screen = args.screen or screen(0)
+  local command = [[sh -c "amixer get Master | grep -oE '[0-9]{1,3}%' | head -n1"]]
 
   local volume_text_widget = padded_widget({
     widgets = { icon_info_widget({
       icon = "",
       suffix = "%",
       timeout = 0.1,
-      command = [[sh -c "amixer get Master | grep -oE '[0-9]{1,3}%' | head -n1"]],
+      command = command,
     }) }
   })
 
   volume_popup_widget({
     attached_widget = volume_text_widget,
     screen = screen,
+    command = command,
   })
 
   return volume_text_widget

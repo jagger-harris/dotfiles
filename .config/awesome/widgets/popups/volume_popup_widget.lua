@@ -9,6 +9,7 @@ local rounded_rect = require("widgets.shapes.rounded_rect")
 local function volume_popup_widget(args)
   local attached_widget = args.attached_widget
   local screen = args.screen
+  local command = args.command
 
   local volume_slider_widget = wibox.widget.slider {
     handle_shape = rounded_rect,
@@ -19,8 +20,8 @@ local function volume_popup_widget(args)
     bar_active_color = beautiful.foreground_color,
   }
 
-  local function set_slider_value()
-    awful.spawn.easy_async([[sh -c "amixer get Master | grep -oE '[0-9]{1,3}%' | head -n1"]], function(stdout)
+  local function update_slider_value()
+    awful.spawn.easy_async(command, function(stdout)
       local volume = stdout:gsub("%%", "")
 
       volume_slider_widget.value = tonumber(volume)
@@ -62,28 +63,33 @@ local function volume_popup_widget(args)
     end
   }
 
-  popup_widget:connect_signal("mouse::enter", function()
+  local function show_popup()
+    update_slider_value()
     popup_widget.visible = true
-    set_slider_value()
     hide_timer:stop()
+  end
+
+  local function hide_popup(delay)
+    hide_timer.timeout = delay
+    hide_timer:start()
+  end
+
+  popup_widget:connect_signal("mouse::enter", function()
+    show_popup()
   end)
 
   popup_widget:connect_signal("mouse::leave", function()
-    hide_timer.timeout = 0.25
-    hide_timer:start()
+    hide_popup(0.25)
   end)
 
   if attached_widget then
     attached_widget:connect_signal("mouse::enter", function()
-      popup_widget.visible = true
       popup_widget:move_next_to(mouse.current_widget_geometry)
-      set_slider_value()
-      hide_timer:stop()
+      show_popup()
     end)
 
     attached_widget:connect_signal("mouse::leave", function()
-      hide_timer.timeout = 0.5
-      hide_timer:start()
+      hide_popup(0.5)
     end)
   end
 
