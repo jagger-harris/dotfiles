@@ -1,10 +1,10 @@
-#   _____                              _   _____ _____ 
+#   _____                              _   _____ _____
 #  |_   _|                            | | |  _  /  ___|
-#    | | ___ _ __ ___  _ __   ___  ___| |_| | | \ `--. 
+#    | | ___ _ __ ___  _ __   ___  ___| |_| | | \ `--.
 #    | |/ _ \ '_ ` _ \| '_ \ / _ \/ __| __| | | |`--. \
 #    | |  __/ | | | | | |_) |  __/\__ \ |_\ \_/ /\__/ /
-#    \_/\___|_| |_| |_| .__/ \___||___/\__|\___/\____/ 
-#                     | |                              
+#    \_/\___|_| |_| |_| .__/ \___||___/\__|\___/\____/
+#                     | |
 #                     |_|
 #
 # Bash config
@@ -25,35 +25,43 @@ parse_git_branch() {
   git branch 2>/dev/null | sed -n '/\* /s///p'
 }
 
+PROMPT_NEWLINE=0
+
 set_prompt() {
   local exit_status="$?"
   local git_branch=$(parse_git_branch)
   local top_left="╭╼"
   local bottom_left="╰╼"
   local bottom_prompt="${bottom_left}"
- 
+
   PS1="${top_left}(${BRIGHT_BLUE}\u${DEFAULT_COLOR}@${BRIGHT_CYAN}\h${DEFAULT_COLOR})━[${BRIGHT_MAGENTA}\w${DEFAULT_COLOR}]\n"
 
   if [ -n "${git_branch}" ]; then
     bottom_prompt="${bottom_prompt}(${BRIGHT_GREEN}${git_branch}${DEFAULT_COLOR}) "
-  fi 
+  fi
 
   if [ ${exit_status} -ne 0 ]; then
     bottom_prompt="${bottom_prompt}(${BRIGHT_RED}✘${DEFAULT_COLOR}) "
-  fi 
+  fi
 
   PS1="${PS1}${bottom_prompt}$ "
-  PROMPT_COMMAND="echo"
+
+  if [ "$PROMPT_NEWLINE" -ne 0 ]; then
+    PS1="\n${PS1}"
+  fi
+
+  PROMPT_NEWLINE=1
 }
 
+# Set PROMPT_COMMAND to call the set_prompt function
 PROMPT_COMMAND=set_prompt
 
 ### Remove duplicate history
 export HISTCONTROL=ignoreboth:erasedups
 
 ### Use bash-completion, if available
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-    . /usr/share/bash-completion/bash_completion
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] &&
+  . /usr/share/bash-completion/bash_completion
 
 ### Aliases
 
@@ -91,5 +99,5 @@ alias fgrep="fgrep --color=auto"
 # misc
 alias cat="bat"
 alias mount="mount | column -t"
-alias df="df -h" # human readable sizes
+alias df="df -h"     # human readable sizes
 alias free="free -m" # shows megabytes
