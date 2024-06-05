@@ -98,7 +98,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
       bg = beautiful.background_color_dark,
       {
         widget = wibox.container.margin,
-        margins = {left = beautiful.widget_margin, top = beautiful.widget_margin, bottom = beautiful.widget_margin},
+        margins = beautiful.widget_margin,
         {
           expand = "none",
           layout = wibox.layout.align.horizontal,
