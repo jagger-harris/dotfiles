@@ -104,17 +104,15 @@ screen.connect_signal("request::desktop_decoration", function(s)
           layout = wibox.layout.align.horizontal,
           { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            spacing = beautiful.widget_margin,
-            padded_widget({ widgets = { s.mytaglist } }),
+            padded_widget({ widgets = { s.mytaglist }, left_margin = 0}),
             padded_widget({ widgets = { s.mylayoutbox } }),
           },
           { -- Middle widgets
             layout = wibox.layout.align.horizontal,
-            padded_widget({ widgets = { wibox.widget.textclock(" %I:%M %p", 0.5) } }),
+            padded_widget({ widgets = { wibox.widget.textclock(" %I:%M %p", 0.5) }, left_margin = 0 }),
           },
           { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            spacing = beautiful.widget_margin,
             padded_widget({ widgets = { temperature_widget, cpu_widget, memory_widget } }),
             updates_widget,
             volume_widget({ screen = s }),

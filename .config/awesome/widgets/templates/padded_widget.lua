@@ -4,6 +4,7 @@ local wibox = require("wibox")
 local rounded_rect = require("widgets.shapes.rounded_rect")
 
 local function padded_widget(args)
+  local left_margin = args.left_margin or beautiful.widget_padding
   local widgets = args.widgets or {}
   local layout_type = args.layout_type or wibox.layout.fixed.horizontal
 
@@ -16,14 +17,18 @@ local function padded_widget(args)
   end
 
   return wibox.widget {
-    widget = wibox.container.background,
-    bg = beautiful.background_color,
-    shape = rounded_rect,
+    widget = wibox.container.margin,
+    left = left_margin,
     {
-      widget = wibox.container.margin,
-      left = beautiful.widget_padding,
-      right = beautiful.widget_padding,
-      widget_layout,
+      widget = wibox.container.background,
+      bg = beautiful.background_color,
+      shape = rounded_rect,
+      {
+        widget = wibox.container.margin,
+        left = beautiful.widget_padding,
+        right = beautiful.widget_padding,
+        widget_layout,
+      }
     }
   }
 end
