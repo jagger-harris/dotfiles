@@ -5,7 +5,6 @@ local beautiful = require("beautiful")
 local modkey = require("config.bindings").modkey
 
 local padded_widget = require("widgets.templates.padded_widget")
-local calendar_popup_widget = require("widgets.popups.calendar_popup_widget")
 
 local systray_widget = require("widgets.wibar.systray_widget")
 local cpu_widget = require("widgets.wibar.cpu_widget")
@@ -79,10 +78,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
 
   -- Calendar widgets
   local calendar_widget = wibox.widget.textclock(" %a %b %d %Y")
-  calendar_popup_widget({
-    screen = s,
-    attached_widget = calendar_widget
-  })
 
   -- Create the wibar
   s.mywibox = awful.wibar({
