@@ -34,7 +34,7 @@ set_prompt() {
   local bottom_left="╰╼"
   local bottom_prompt="${bottom_left}"
 
-  PS1="${top_left}(${BRIGHT_BLUE}\u${DEFAULT_COLOR}@${BRIGHT_CYAN}\h${DEFAULT_COLOR})━[${BRIGHT_MAGENTA}\w${DEFAULT_COLOR}]\n"
+  PS1="${top_left}(${BRIGHT_BLUE}\u${DEFAULT_COLOR}@${BRIGHT_CYAN}\h${DEFAULT_COLOR})-[${BRIGHT_MAGENTA}\w${DEFAULT_COLOR}]\n"
 
   if [ -n "${git_branch}" ]; then
     bottom_prompt="${bottom_prompt}(${BRIGHT_GREEN}${git_branch}${DEFAULT_COLOR}) "
