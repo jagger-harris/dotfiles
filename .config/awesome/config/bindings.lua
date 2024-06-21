@@ -53,6 +53,9 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
 
 	-- Applications
+	awful.key({ modkey }, "Print", function()
+		awful.spawn(apps.screenshot, false)
+	end, { description = "print current screen", group = "launcher" }),
 	awful.key({ modkey }, "Return", function()
 		awful.spawn(apps.terminal, false)
 	end, { description = "open a terminal", group = "launcher" }),
