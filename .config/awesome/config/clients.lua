@@ -21,7 +21,11 @@ client.connect_signal("mouse::enter", function(c)
 	c:activate({ context = "mouse_enter", raise = false })
 end)
 
---- Never minimize clients ---
+-- Disable minimized and maximized windows
 client.connect_signal("property::minimized", function(c)
 	c.minimized = false
+end)
+
+client.connect_signal("property::maximized", function(c)
+	c.maximized = false
 end)
