@@ -1,5 +1,3 @@
-local plugin = {
+return {
 	"christoomey/vim-tmux-navigator",
 }
-
-return plugin
