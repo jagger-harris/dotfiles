@@ -7,7 +7,7 @@
 //                     | |                              
 //                     |_|                              
 //                                                      
-// Blue Fury Theme
+// Blue Fury theme
 // Images licensed under CC BY-SA 4.0
 // (https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -41,7 +41,7 @@ mainbox {
 inputbar {
   margin: 64px;
   padding: 12px;
-  spacing: 12px;
+  spacing: 8px;
   children: ["prompt", "entry"];
   border-radius: @border-radius-all;
   background-color: @background-color;

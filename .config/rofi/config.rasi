@@ -1,7 +1,7 @@
 configuration {
   modi: ["drun"];
   show-icons: true;
-  display-drun: "";
+  display-drun: " ";
   font: "JetBrainsMonoNL Nerd Font 12";
 }
 
