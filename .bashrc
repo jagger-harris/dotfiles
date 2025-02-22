@@ -63,6 +63,10 @@ export HISTCONTROL=ignoreboth:erasedups
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] &&
   . /usr/share/bash-completion/bash_completion
 
+### Variables
+
+export EDITOR=nvim
+
 ### Aliases
 
 # safety
@@ -76,8 +80,7 @@ alias chgrp="chgrp --preserve-root"
 
 # custom
 alias config="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias update="sudo pacman -Syu"
-alias updateaur="paru -Sua"
+alias updateall="sudo pacman -Syyu;paru -Sua;flatpak update"
 alias vim="nvim"
 
 # cd
@@ -87,9 +90,9 @@ alias .3="cd ../../../../"
 alias .4="cd ../../../../../"
 
 # ls
-alias ls="exa --color=always --group-directories-first"
-alias ll="exa -la --color=always --group-directories-first"
-alias l.="exa -d .* --color=always --group-directories-first"
+alias ls="eza --color=auto --icons=auto --group-directories-first"
+alias ll="eza -la --color=auto --icons=auto --group-directories-first"
+alias l.="eza -d .* --color=auto --icons=auto --group-directories-first"
 
 # grep
 alias grep="grep --color=auto"
