@@ -1,0 +1,82 @@
+// -*- mode: jsonc -*-
+{
+    "spacing": 4,
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "group/hardware",
+        "custom/updates",
+        "pulseaudio",
+        "tray",
+        "clock#calendar"
+    ],
+    "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+              "urgent": "",
+              "active": "",
+              "visible": "",
+              "default": "",
+              "empty": ""
+        },
+        "all-outputs": false
+    },
+    "hyprland/window": {
+       "max-length": 48,
+      "icon": true,
+      "icon-size": 16
+    },
+    "group/hardware": {
+      "orientation": "horizontal",
+      "modules": [
+          "temperature",
+          "cpu",
+          "memory"
+      ]
+    },
+    "tray": {
+        "spacing": 4,
+        "icon-size": 20
+    },
+    "clock": {
+        "interval": 1,
+        "format": " {:%I:%M %p}",
+        "tooltip": false
+    },
+    "clock#calendar": {
+      "format": " {:%a %b %d %Y}",
+      "tooltip": false
+    },
+    "cpu": {
+        "interval": 5,
+        "format": " {usage}%"
+    },
+    "memory": {
+        "interval": 5,
+        "format": " {}%"
+    },
+    "temperature": {
+        "interval": 5,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", ""]
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/updates": {
+      "interval": 5,
+      "format": "󰚰 {}",
+      "exec": "checkupdates | wc -l"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+* {
+    font-family: "JetBrainsMono NF";
+    font-size: 15px;
+    color: #eeeeee;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+window#waybar > box {
+    margin: 0 0 3px 0;
+    padding: 4px 4px;
+    box-shadow: 0px 1px 2px #011627;
+    background-color: #011627;
+}
+
+tooltip {
+    border: 2px solid #b2ceee;
+    border-radius: 4px;
+    box-shadow: 0px 0px 1px 1px #011627;
+    background-color: #0b2942;
+}
+
+window#waybar.empty #window {
+  background: none;
+}
+
+button {
+    border: none;
+    border-radius: 0;
+}
+
+button:hover {
+    background: inherit;
+}
+
+#workspaces button {
+    padding: 0;
+    background-color: transparent;
+}
+
+#workspaces button.active label {
+    color: #82aaff;
+}
+
+#workspaces button.urgent label {
+    color: #fc514e;
+}
+
+#workspaces button:hover label {
+    color: #b2ceee;
+}
+
+#cpu,
+#temperature,
+#memory,
+#custom-updates,
+#clock,
+#disk,
+#pulseaudio,
+#wireplumber,
+#tray,
+#window,
+#workspaces {
+    padding: 0px 4px;
+    border-radius: 4px;
+    background: #0b2942;
+}
+
+#hardware {
+    border-radius: 4px;
+    background: #0b2942;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
