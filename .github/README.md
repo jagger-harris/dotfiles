@@ -1,8 +1,11 @@
 # TempestOS Dotfiles
 
-My personal dotfiles which I have code named TempestOS.
+My personal dotfiles which I have codenamed TempestOS.
 
-## Using
+## Installation
+
+This will overwrite your own dotfiles!
+
 ```shell
 git clone https://github.com/jagger-harris/dotfiles.git ~/
 ```
@@ -11,4 +14,4 @@ git clone https://github.com/jagger-harris/dotfiles.git ~/
 Bug fix contributions only.
 
 ## License
-- [ISC](https://choosealicense.com/licenses/isc/)
+- [MIT](https://choosealicense.com/licenses/mit/)
