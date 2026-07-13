@@ -12,6 +12,13 @@
 ### Return if not an interactive shell
 [[ $- != *i* ]] && return
 
+### Use fish
+# if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} && ${SHLVL} == 1 ]]
+# then
+# 	shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+# 	exec fish $LOGIN_OPTION
+# fi
+
 ### Prompt
 BRIGHT_RED="\[\033[1;31m\]"
 BRIGHT_GREEN="\[\033[1;32m\]"
@@ -34,7 +41,7 @@ set_prompt() {
   local bottom_left="╰╼"
   local bottom_prompt="${bottom_left}"
 
-  PS1="${top_left}(${BRIGHT_BLUE}\u${DEFAULT_COLOR}@${BRIGHT_CYAN}\h${DEFAULT_COLOR})-[${BRIGHT_MAGENTA}\w${DEFAULT_COLOR}]\n"
+  PS1="${top_left}(${BRIGHT_BLUE}\u${DEFAULT_COLOR}@${BRIGHT_CYAN}\h${DEFAULT_COLOR})—[${BRIGHT_MAGENTA}\w${DEFAULT_COLOR}]\n"
 
   if [ -n "${git_branch}" ]; then
     bottom_prompt="${bottom_prompt}(${BRIGHT_GREEN}${git_branch}${DEFAULT_COLOR}) "
@@ -80,7 +87,7 @@ alias chgrp="chgrp --preserve-root"
 
 # custom
 alias config="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias updateall="sudo pacman -Syyu;paru -Sua;flatpak update"
+alias updateall="paru -Syyu;flatpak update"
 alias vim="nvim"
 
 # cd
