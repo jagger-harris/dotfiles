@@ -1,4 +1,16 @@
 // -*- mode: jsonc -*-
+
+//   _____                              _   _____ _____
+//  |_   _|                            | | |  _  /  ___|
+//    | | ___ _ __ ___  _ __   ___  ___| |_| | | \ `--.
+//    | |/ _ \ '_ ` _ \| '_ \ / _ \/ __| __| | | |`--. \
+//    | |  __/ | | | | | |_) |  __/\__ \ |_\ \_/ /\__/ /
+//    \_/\___|_| |_| |_| .__/ \___||___/\__|\___/\____/
+//                     | |
+//                     |_|
+//
+// Waybar config
+
 {
     "spacing": 4,
     "modules-left": [
@@ -16,28 +28,35 @@
         "clock#calendar"
     ],
     "hyprland/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-              "urgent": "",
-              "active": "",
-              "visible": "",
-              "default": "",
-              "empty": ""
+        "format": "{icon}",
+        "all-outputs": false,
+        "active-only": false,
+        "on-click": "activate",
+        "persistent-workspaces": {
+            "*": 9
         },
-        "all-outputs": false
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "visible": "",
+            "default": "",
+            "empty": ""
+        },
+        "on-scroll-up": "hyprctl dispatch 'hl.plugin.split_monitor_workspaces.cycle_workspaces(1)'",
+        "on-scroll-down": "hyprctl dispatch 'hl.plugin.split_monitor_workspaces.cycle_workspaces(-1)'"
     },
     "hyprland/window": {
-       "max-length": 48,
-      "icon": true,
-      "icon-size": 16
+        "max-length": 48,
+        "icon": true,
+        "icon-size": 16
     },
     "group/hardware": {
-      "orientation": "horizontal",
-      "modules": [
-          "temperature",
-          "cpu",
-          "memory"
-      ]
+        "orientation": "horizontal",
+        "modules": [
+            "temperature",
+            "cpu",
+            "memory"
+        ]
     },
     "tray": {
         "spacing": 4,
@@ -74,9 +93,8 @@
         "on-click": "pavucontrol"
     },
     "custom/updates": {
-      "interval": 5,
-      "format": "󰚰 {}",
-      "exec": "checkupdates | wc -l"
+        "interval": 5,
+        "format": "󰚰 {}",
+        "exec": "checkupdates | wc -l"
     }
-  }
 }
