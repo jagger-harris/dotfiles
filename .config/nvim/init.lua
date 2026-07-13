@@ -9,6 +9,9 @@
 --
 -- Neovim config
 
+-- Faster loading times
+vim.loader.enable()
+
 require("config.options")
+require("config.lsp")
 require("config.lazy")
-vim.cmd.colorscheme("nightfly")

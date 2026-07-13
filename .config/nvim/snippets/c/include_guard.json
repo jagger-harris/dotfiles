@@ -1,0 +1,14 @@
+{
+  "Include Guard": {
+    "prefix": "guard",
+    "body": [
+      "#ifndef ${1:HEADER_FILE_H}",
+      "#define $1",
+      "",
+      "${0}",
+      "",
+      "#endif // $1"
+    ],
+    "description": "Adds a standard include guard"
+  }
+}
